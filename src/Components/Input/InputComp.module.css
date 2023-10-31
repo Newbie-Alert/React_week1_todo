@@ -1,0 +1,28 @@
+button {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  border: none;
+}
+
+
+.input_form {
+  padding: 1.25rem 0;
+  background-color: #1f1f1f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.input_container label {
+  margin-right: 0.45rem;
+}
+
+.input_container input {
+  border-radius: 6px;
+  border: none;
+  padding: 0.15rem;
+  padding-left: 0.6rem;
+}
