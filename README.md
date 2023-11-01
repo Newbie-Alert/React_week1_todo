@@ -51,3 +51,12 @@
   ↪ 자식 - Working ItemList
 - Done Component  
   ↪ 자식 - Done ItemList
+
+
+## 11.01 
+- 디렉토리명 변경
+- 관심사에 따른 컴포넌트 분리
+- 삭제 기능 작동 시 확인 모달 추가
+
+### 문제
+- TodoList를 공통 컴포넌트로 만드는 것
