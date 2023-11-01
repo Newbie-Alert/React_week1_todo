@@ -46,6 +46,10 @@ export default function Working({ todos, taskDone, deleteTask }) {
 // 진행 중인 항목 UI 컴포넌트
 function DrawWorkingTodo({ workingTodos, makeDone, deleteOne }) {
   return workingTodos.map((todo) => {
+    const time = todo.id.split(" ");
+    const date = `${time[3]} / ${time[1]} ${time[2]} / ${time[4]
+      .slice(0, 5)
+      .padStart("2", 0)}`;
     return (
       <div key={todo.id}>
         <div className={styles.todo_item}>
@@ -56,7 +60,7 @@ function DrawWorkingTodo({ workingTodos, makeDone, deleteOne }) {
             <p>{todo.text}</p>
           </div>
           <div className={styles.working_id}>
-            <p>{todo.id.slice(0, 15)}</p>
+            <p>{date}</p>
           </div>
           <div className={styles.button_box}>
             <button data-id={todo.id} onClick={deleteOne}>

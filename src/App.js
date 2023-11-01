@@ -23,6 +23,7 @@ function App() {
   const taskDone = (id) => {
     let copy = [...todos];
     let completed = copy.find(todo => todo.id === id)
+    completed.id = new Date().toString();
     completed.isDone = true;
     setTodos(copy)
   }
