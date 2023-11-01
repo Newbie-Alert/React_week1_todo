@@ -17,7 +17,9 @@
 .if_all_done {
   padding: 1rem;
   text-align: center;
-  margin-top: 4.5rem;
+  margin-top: 5rem;
+  opacity: 0.3;
+  font-size: 1.5rem;
 }
 
 .working_todos {

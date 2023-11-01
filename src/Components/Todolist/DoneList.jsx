@@ -29,7 +29,7 @@ export default function Done({ todos, deleteTask, restoreTask }) {
       <div className={styles.done_todos}>
         {doneTodos.length === 0 ? (
           <div className={styles.todolist_done}>
-            <h1 className={styles.if_empty}>완료한 항목이 없습니다🥹</h1>
+            <h1 className={styles.if_empty}>완료한 항목이 없습니다</h1>
           </div>
         ) : (
           <DrawDoneTodo
