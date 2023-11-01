@@ -23,7 +23,9 @@ function App() {
   const taskDone = (id) => {
     let copy = [...todos];
     let completed = copy.find(todo => todo.id === id)
+    // 완료 버튼을 누를 시 완료 버튼을 누른 시간으로 업데이트
     completed.id = new Date().toString();
+    // 완료 버튼을 누른 객체의 isDone 속성을 true로 업데이트
     completed.isDone = true;
     setTodos(copy)
   }
