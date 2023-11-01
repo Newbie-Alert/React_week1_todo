@@ -3,6 +3,7 @@ import styles from "./WorkingList.module.css";
 
 export default function Working({ todos, taskDone, deleteTask }) {
   // STATES
+  // 전역 state를 받아와 isDone의 값이 false인 것들만 filter 합니다.
   let working = [...todos].filter((item) => item.isDone === false);
 
   // Function
@@ -11,7 +12,7 @@ export default function Working({ todos, taskDone, deleteTask }) {
     const taskId = e.target.dataset.id;
     taskDone(taskId);
   };
-
+  /** 삭제 버튼을 누른 게시물의 ID를 가져와 App.js의 deleteTask 함수에 전달합니다 **/
   const deleteOne = (e) => {
     const taskId = e.target.dataset.id;
     deleteTask(taskId);
@@ -42,6 +43,7 @@ export default function Working({ todos, taskDone, deleteTask }) {
   );
 }
 
+// 진행 중인 항목 UI 컴포넌트
 function DrawWorkingTodo({ workingTodos, makeDone, deleteOne }) {
   return workingTodos.map((todo) => {
     return (
