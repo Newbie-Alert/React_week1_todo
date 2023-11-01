@@ -23,7 +23,7 @@ export default function Done({ todos, deleteTask, restoreTask }) {
       <div className={styles.category}>
         <p>완료 항목</p>
         <p>내용</p>
-        <p>등록 시간</p>
+        <p>완료 시간</p>
       </div>
 
       <div className={styles.done_todos}>
@@ -46,6 +46,10 @@ export default function Done({ todos, deleteTask, restoreTask }) {
 // 완료 항목 UI 컴포넌트
 function DrawDoneTodo({ doneTodos, deleteOne, restoreOne }) {
   return doneTodos.map((todo) => {
+    const time = todo.id.split(" ");
+    const date = `${time[3]} / ${time[1]} ${time[2]} / ${time[4]
+      .slice(0, 5)
+      .padStart("2", 0)}`;
     return (
       <div key={todo.id}>
         <div className={styles.todo_item}>
@@ -56,7 +60,7 @@ function DrawDoneTodo({ doneTodos, deleteOne, restoreOne }) {
             <p>{todo.text}</p>
           </div>
           <div className={styles.done_id}>
-            <p>{todo.id.slice(0, 15)}</p>
+            <p>{date}</p>
           </div>
           <div className={styles.button_box}>
             <button data-id={todo.id} onClick={deleteOne}>
