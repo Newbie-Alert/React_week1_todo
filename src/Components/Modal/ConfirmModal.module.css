@@ -1,0 +1,45 @@
+.modal_bg {
+  width: 100vw;
+  height: 100vh;
+  background-color: #1f1f1f;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+}
+
+.modal_container {
+  width: 300px;
+  padding: 2rem 2rem;
+  border-radius: 9px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: aliceblue;
+  z-index: 1;
+}
+
+.modal_button_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modal_button_box button {
+  background-color: #9f9f9f;
+  color: white;
+}
+
+.confirm:hover {
+  background-color: rgb(255, 113, 113);
+  color: white;
+}
+
+.cancle:hover {
+  background-color: rgb(37, 123, 188);
+  color: white;
+}
