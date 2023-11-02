@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import styles from "./TodoList.module.css";
 import ConfirmModal from "../Modal/ConfirmModal";
 
-export default function TodoList({ todos, setTodos }) {
+export default function TodoList({ isActive, todos, setTodos }) {
   //========
   // STATES
   //========
   // 전역 state를 받아와 isDone의 값에 따라 분류합니다.
-  let working = [...todos].filter((item) => item.isDone === false);
-  let done = [...todos].filter((item) => item.isDone === true);
+  const list = [...todos].filter((el) => el.isDone !== isActive);
   const [modal, setModal] = useState(false);
   let [selected, setSelected] = useState("");
 
@@ -66,55 +65,62 @@ export default function TodoList({ todos, setTodos }) {
 
   return (
     <>
-      {/* Working TODOLIST */}
-      <div className={styles.working_todos}>
-        <div className={styles.category}>
-          <p>할 일</p>
-          <p>내용</p>
-          <p>등록 시간</p>
-        </div>
+      {/* TODOLIST */}
+      {/* WorkingTodo */}
+      {isActive === true ? (
         <div className={styles.working_todos}>
-          {working.length === 0 ? (
-            <div className={styles.todolist_working}>
-              <h1 className={styles.if_all_done}>할 일 완료!😆</h1>
-            </div>
-          ) : (
-            <DrawWorkingTodo
-              workingTodos={working}
-              makeDone={makeDone}
-              sendDeleteOne={sendDeleteOne}
-              setTodos={setTodos}
-              setSelected={setSelected}
-            />
-          )}
+          <div className={styles.category}>
+            <p>할 일</p>
+            <p>내용</p>
+            <p>등록 시간</p>
+          </div>
+          <div className={styles.working_todos}>
+            {/* 데이터가 없다면 '할 일 완료!'😆가 화면에 렌더합니다 */}
+            {list.length === 0 ? (
+              <div className={styles.todolist_working}>
+                <h1 className={styles.if_all_done}>할 일 완료!😆</h1>
+              </div>
+            ) : (
+              // 데이터가 있다면 데이터의 길이만큼 화면을 그립니다.
+              <DrawTodoList
+                list={list}
+                makeDone={makeDone}
+                sendDeleteOne={sendDeleteOne}
+                setTodos={setTodos}
+                setSelected={setSelected}
+                isActive={isActive}
+              />
+            )}
+          </div>
         </div>
-      </div>
-
-      {/* DONE TODOLIST */}
-      <div className={styles.done_todos}>
-        <div className={styles.done_category}>
-          <p>완료 항목</p>
-          <p>내용</p>
-          <p>완료 시간</p>
-        </div>
+      ) : (
+        // DONE TODO
         <div className={styles.done_todos}>
-          {/* 데이터가 없다면 항목이 없습니다가 화면에 렌더합니다 */}
-          {done.length === 0 ? (
-            <div className={styles.todolist_done}>
-              <h1 className={styles.if_empty}>완료한 항목이 없습니다</h1>
-            </div>
-          ) : (
-            // 데이터가 있다면 데이터의 길이만큼 화면을 그립니다.
-            <DrawDoneTodo
-              done={done}
-              sendDeleteOne={sendDeleteOne}
-              sendRestoreOne={sendRestoreOne}
-              setTodos={setTodos}
-              setSelected={setSelected}
-            />
-          )}
+          <div className={styles.done_category}>
+            <p>완료 항목</p>
+            <p>내용</p>
+            <p>완료 시간</p>
+          </div>
+          <div className={styles.done_todos}>
+            {/* 데이터가 없다면 '완료한 항목이 없습니다'가 화면에 렌더합니다 */}
+            {list.length === 0 ? (
+              <div className={styles.todolist_done}>
+                <h1 className={styles.if_empty}>완료한 항목이 없습니다</h1>
+              </div>
+            ) : (
+              // 데이터가 있다면 데이터의 길이만큼 화면을 그립니다.
+              <DrawTodoList
+                list={list}
+                sendDeleteOne={sendDeleteOne}
+                sendRestoreOne={sendRestoreOne}
+                setTodos={setTodos}
+                setSelected={setSelected}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
+
       {modal === true ? (
         <ConfirmModal
           deleteTask={deleteTask}
@@ -127,9 +133,16 @@ export default function TodoList({ todos, setTodos }) {
   );
 }
 
-// 진행 중인 항목 UI 컴포넌트
-function DrawWorkingTodo({ workingTodos, makeDone, sendDeleteOne, setTodos }) {
-  return workingTodos.map((todo) => {
+// UI 컴포넌트
+function DrawTodoList({
+  isActive,
+  list,
+  makeDone,
+  sendDeleteOne,
+  sendRestoreOne,
+  setTodos,
+}) {
+  return list.map((todo) => {
     const time = todo.id.split(" ");
     const date = `${time[3]} / ${time[1]} ${time[2]} / ${time[4]
       .slice(0, 5)
@@ -138,13 +151,13 @@ function DrawWorkingTodo({ workingTodos, makeDone, sendDeleteOne, setTodos }) {
     return (
       <div key={todo.id}>
         <div className={styles.todo_item}>
-          <div className={styles.working_title}>
+          <div className={isActive ? styles.working_title : styles.done_title}>
             <h4>{todo.title}</h4>
           </div>
-          <div className={styles.working_text}>
+          <div className={isActive ? styles.working_text : styles.done_title}>
             <p>{todo.text}</p>
           </div>
-          <div className={styles.working_id}>
+          <div className={isActive ? styles.working_id : styles.done_id}>
             <p>{date}</p>
           </div>
           <div className={styles.button_box}>
@@ -153,41 +166,9 @@ function DrawWorkingTodo({ workingTodos, makeDone, sendDeleteOne, setTodos }) {
               onClick={(e) => sendDeleteOne(e, setTodos)}>
               삭제
             </button>
-            <button data-id={todo.id} onClick={makeDone}>
-              {todo.isDone === true ? "취소" : "완료"}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  });
-}
-
-function DrawDoneTodo({ done, sendDeleteOne, sendRestoreOne, setTodos }) {
-  return done.map((todo) => {
-    const time = todo.id.split(" ");
-    const date = `${time[3]} / ${time[1]} ${time[2]} / ${time[4]
-      .slice(0, 5)
-      .padStart("2", 0)}`;
-    return (
-      <div key={todo.id}>
-        <div className={styles.todo_item}>
-          <div className={styles.done_title}>
-            <h4>{todo.title}</h4>
-          </div>
-          <div className={styles.done_text}>
-            <p>{todo.text}</p>
-          </div>
-          <div className={styles.done_id}>
-            <p>{date}</p>
-          </div>
-          <div className={styles.button_box}>
             <button
               data-id={todo.id}
-              onClick={(e) => sendDeleteOne(e, setTodos)}>
-              삭제
-            </button>
-            <button data-id={todo.id} onClick={sendRestoreOne}>
+              onClick={isActive ? makeDone : sendRestoreOne}>
               {todo.isDone === true ? "취소" : "완료"}
             </button>
           </div>

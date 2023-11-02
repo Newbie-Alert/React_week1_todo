@@ -12,7 +12,8 @@ function App() {
     <div className="App">
       <Nav />
       <InputComp setTodos={setTodos} />
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList isActive={true} todos={todos} setTodos={setTodos} />
+      <TodoList isActive={false} todos={todos} setTodos={setTodos} />
     </div>
   );
 }

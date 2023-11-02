@@ -48,15 +48,15 @@
 }
 
 .working_todos {
-  height: 250px;
+  height: 300px;
   max-height: 350px;
   overflow-y: scroll;
   border-bottom: 1px solid black;
 }
 
 .done_todos {
-  height: 313px;
-  max-height: 350px;
+  height: 100%;
+  max-height: 400px;
   overflow-y: scroll;
 }
 
