@@ -9,7 +9,6 @@ export default function TodoList({ isActive, todos, setTodos }) {
   //========
   // 전역 state를 받아와 isActive의 값에 따라 분류합니다.
   const list = todos.filter((el) => el.isDone !== isActive);
-
   const [modal, setModal] = useState(false);
   let [selected, setSelected] = useState("");
 

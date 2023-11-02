@@ -12,6 +12,7 @@ function App() {
     <div className="App">
       <Nav />
       <InputComp setTodos={setTodos} />
+      {/* 변수나 state가 아니더라도 props를 전송할 수 있다. */}
       <TodoList isActive={true} todos={todos} setTodos={setTodos} />
       <TodoList isActive={false} todos={todos} setTodos={setTodos} />
     </div>
