@@ -134,6 +134,7 @@ function DrawWorkingTodo({ workingTodos, makeDone, sendDeleteOne, setTodos }) {
     const date = `${time[3]} / ${time[1]} ${time[2]} / ${time[4]
       .slice(0, 5)
       .padStart("2", 0)}`;
+
     return (
       <div key={todo.id}>
         <div className={styles.todo_item}>

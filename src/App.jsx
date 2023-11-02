@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import './App.css';
-import Nav from './components/Header/Nav';
-import InputComp from './components/Input/InputComp';
-import TodoList from './components/Todolist/TodoList';
+import { useState } from "react";
+import "./App.css";
+import Nav from "./components/Header/Nav";
+import InputComp from "./components/Input/InputComp";
+import TodoList from "./components/Todolist/TodoList";
 
 function App() {
   // State
