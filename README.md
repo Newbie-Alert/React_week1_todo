@@ -63,7 +63,5 @@
 
 - Header Component
 - Input Component
-- Working Component  
-  ↪ 자식 - Working ItemList
-- Done Component  
-  ↪ 자식 - Done ItemList
+- Todo Component
+- Todo Card
