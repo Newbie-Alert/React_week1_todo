@@ -1,43 +1,3 @@
-.category {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16.2rem;
-  padding: 1rem 4rem;
-  position: relative;
-  font-size: 1rem;
-  border-bottom: 1px solid black;
-}
-
-.category p:nth-child(3) {
-  margin-left: 3.3rem;
-}
-
-.if_all_done {
-  padding: 1rem;
-  text-align: center;
-  margin-top: 5rem;
-  opacity: 0.3;
-  font-size: 1.5rem;
-}
-
-.working_todos {
-  height: 250px;
-  max-height: 350px;
-  overflow-y: scroll;
-  border-bottom: 1px solid black;
-}
-
-.working_container {
-  display: flex;
-  padding: 0 4rem;
-}
-
-.working {
-  width: 10px;
-}
-
 .todo_item {
   width: 100%;
   display: flex;
@@ -53,11 +13,22 @@
   flex-basis: 150px;
 }
 
+.done_title {
+  flex-basis: 150px;
+}
+
 .todo_item h4 {
   font-size: 1.3rem;
 }
 
 .working_text {
+  width: 200px;
+  word-wrap: break-word;
+  word-break: keep-all;
+  flex-basis: 200px;
+}
+
+.done_text {
   width: 200px;
   word-wrap: break-word;
   word-break: keep-all;
